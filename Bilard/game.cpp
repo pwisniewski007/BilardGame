@@ -1,16 +1,9 @@
-#include<QWidget>
-#include<QPainter>
+#include <QWidget>
+#include <QPainter>
+#include <QMouseEvent>
 #include "game.h"
 #include "table.h"
 #include "ball.h"
-void Game::paintEvent(QPaintEvent* event)
-{
-    table1.Draw(this);
-
-    for (int i=0; i<15; i++)
-        bilard_balls[i].Draw(this);
-
-}
 
 Game::Game(int a_Height, int a_Width, int r1)
 {
@@ -35,4 +28,34 @@ Game::Game(int a_Height, int a_Width, int r1)
 
         howManyBalls++;
     }
+
+
+}
+
+void Game::paintEvent(QPaintEvent* event)
+{
+    table1.Draw(this);
+
+    for (int i=0; i<15; i++)
+        bilard_balls[i].Draw(this);
+
+    player1.Draw(this);
+
+}
+
+void Game::mousePressEvent(QMouseEvent* event)
+{
+    player1.x1 = event->x();
+    player1.y1 = event->y();
+
+}
+
+void Game::mouseReleaseEvent(QMouseEvent* event2)
+{
+    player1.x2 = event2->x();
+    player1.y2 = event2->y();
+
+    repaint();
+
+
 }

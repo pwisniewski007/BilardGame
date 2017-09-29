@@ -1,5 +1,5 @@
 #include "ball.h"
-#include<QPainter>
+#include <QPainter>
 Ball::Ball(int r1, int x1, int y1)
 {
     r=r1;
