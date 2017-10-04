@@ -10,6 +10,6 @@ Table::Table(int a_height, int a_width)
 void Table::Draw(QWidget *widget)
 {
     QPainter painter(widget);
-    QRect rect(0,0,this->width,this->height);
+    QRect rect(200,150,this->width,this->height);
     painter.drawRect(rect);
 }

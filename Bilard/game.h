@@ -7,15 +7,18 @@
 class Game : public QWidget
 {
 public:
+    const static int HowManyBalls = 15;
 
     Table table1;
-    Ball bilard_balls[15];
+    Ball bilard_balls[Game::HowManyBalls];
     Player player1;
+    WhiteBall wball;
 
     Game(int a_Height, int a_Width, int r1);
 
     void paintEvent(QPaintEvent*);
     void mousePressEvent(QMouseEvent*);
+    void mouseMoveEvent(QMouseEvent*);
     void mouseReleaseEvent(QMouseEvent*);
 };
 

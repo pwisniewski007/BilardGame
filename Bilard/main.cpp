@@ -6,8 +6,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    Game BilardGame(200,400,5);
+    Game BilardGame(350,700,10);
     w.setCentralWidget(&BilardGame);
+    w.setFixedSize(1100,750);
     w.show();
 
     return a.exec();
