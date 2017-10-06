@@ -2,6 +2,7 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QColor>
+#include <windows.h>
 #include "game.h"
 #include "table.h"
 #include "ball.h"
@@ -86,21 +87,37 @@ void Game::mouseMoveEvent(QMouseEvent* event2) // setting mouse move event
 
 void Game::mouseReleaseEvent(QMouseEvent* event3) // setting mouse release event
 {
-    int x1 = player1.x1;
-    int y1 = player1.y1;
 
-    int x2 = player1.x2;
-    int y2 = player1.y2;
 
-    int xx = x2-x1;
-    int yy = y2-y1;
-    while((wball.x != 0) || (wball.y != 0))
+    int x = player1.x1-player1.x2;
+    int y = player1.y1-player1.y2;
+
+    int endX = wball.x+x;
+    int endY = wball.y+y;
+
+
+
+    float length =  sqrt(x*x+y*y);
+    float deltaX =x/length;
+    float deltaY = y/length;
+    int Speed = length/5;
+
+    while(Speed>0)
     {
-        //{-1,-1}
-        wball.x+=xx;
-        wball.y+=yy;
 
+        wball.x+=(deltaX*Speed);
+        wball.y+=(deltaY*Speed);
+        Speed--;
         repaint();
+        Sleep(50);
+
     }
+
+
+
+    player1.x1=wball.x;
+    player1.y1=wball.y;
+    repaint();
+
 
 }
