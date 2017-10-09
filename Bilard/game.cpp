@@ -7,11 +7,13 @@
 #include "table.h"
 #include "ball.h"
 
-Game::Game(int a_Height, int a_Width, int r1)
+Game::Game(int a_Height, int a_Width, int x,int y,int r1)
 {
 // ------------------------- setting table start position
     table1.height = a_Height;
     table1.width = a_Width;
+    table1.x=x;
+    table1.y=y;
 
 // ------------------------- setting balls start positions
 
@@ -84,6 +86,27 @@ void Game::mouseMoveEvent(QMouseEvent* event2) // setting mouse move event
 
     repaint();
 }
+void Game::checkCollisionWithTable()
+{
+    if(wball.x-wball.r<=table1.x)
+    {
+        wball.deltaX = -wball.deltaX;
+    }
+    else if(wball.x+wball.r>=table1.x+table1.width)
+    {
+        wball.deltaX=-wball.deltaX;
+    }
+    else if(wball.y-wball.r<=table1.y)
+    {
+        wball.deltaY=-wball.deltaY;
+
+    }
+    else if(wball.y+wball.r>=table1.y+table1.height)
+    {
+            wball.deltaY=-wball.deltaY;
+
+    }
+}
 
 void Game::mouseReleaseEvent(QMouseEvent* event3) // setting mouse release event
 {
@@ -92,21 +115,18 @@ void Game::mouseReleaseEvent(QMouseEvent* event3) // setting mouse release event
     int x = player1.x1-player1.x2;
     int y = player1.y1-player1.y2;
 
-    int endX = wball.x+x;
-    int endY = wball.y+y;
-
-
-
-    float length =  sqrt(x*x+y*y);
-    float deltaX =x/length;
-    float deltaY = y/length;
-    int Speed = length/5;
+    wball.length =  sqrt(x*x+y*y);
+    wball.deltaX =x/wball.length;
+    wball.deltaY = y/wball.length;
+    int Speed = wball.length/5;
 
     while(Speed>0)
     {
 
-        wball.x+=(deltaX*Speed);
-        wball.y+=(deltaY*Speed);
+      // wball.x+=deltaX*Speed;
+      // wball.y+=deltaY*Speed;//
+       wball.move(Speed);
+       checkCollisionWithTable();
         Speed--;
         repaint();
         Sleep(50);

@@ -13,7 +13,8 @@ public:
 class WhiteBall : public Ball
 {
 public:
-
+    float deltaX,deltaY,length;
+    void move(int);
 
 };
 

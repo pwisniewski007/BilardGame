@@ -13,5 +13,10 @@ void Ball::Draw(QWidget *widget2) //****
 
     painter.drawEllipse(point,this->r,this->r);
 }
+void WhiteBall::move( int Speed)
+{
+    this->x+=this->deltaX*Speed;
+    this->y+=this->deltaY*Speed;
+}
 
 

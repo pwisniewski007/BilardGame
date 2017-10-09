@@ -14,8 +14,9 @@ public:
     Player player1;
     WhiteBall wball;
 
-    Game(int a_Height, int a_Width, int r1);
+    Game(int a_Height, int a_Width,int x,int y,int r1);
 
+    void checkCollisionWithTable();
     void paintEvent(QPaintEvent*);
     void mousePressEvent(QMouseEvent*);
     void mouseMoveEvent(QMouseEvent*);
