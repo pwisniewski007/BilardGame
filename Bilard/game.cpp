@@ -62,7 +62,7 @@ void Game::paintEvent(QPaintEvent* event)
 {
     table1.Draw(this); // table drawing
 
-    for (int i=0; i<15; i++)
+    for (int i=0; i<this->HowManyBalls; i++)
         bilard_balls[i].Draw(this); // bilard balls drawing
 
     player1.Draw(this); // player drawing
@@ -107,6 +107,10 @@ void Game::checkCollisionWithTable()
 
     }
 }
+void Game::checkBallCollisions()
+{
+
+}
 
 void Game::mouseReleaseEvent(QMouseEvent* event3) // setting mouse release event
 {
@@ -127,6 +131,7 @@ void Game::mouseReleaseEvent(QMouseEvent* event3) // setting mouse release event
       // wball.y+=deltaY*Speed;//
        wball.move(Speed);
        checkCollisionWithTable();
+       checkBallCollisions();
         Speed--;
         repaint();
         Sleep(50);
